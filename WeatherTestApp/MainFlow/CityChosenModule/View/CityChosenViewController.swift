@@ -7,30 +7,32 @@
 
 import UIKit
 
-class CityChosenViewController: UITableViewController {
+class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: - Properties
     
     var presenter: CityChosenPresenterProtocol!
     private let cellID = "ID"
+    
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search"
+        
+        return searchBar
+    }()
+    
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
 
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
     
     // MARK: - Table view data source
     
@@ -61,6 +63,7 @@ extension CityChosenViewController: CityChosenViewProtocol {
         return
     }
 }
+
 
 
 
