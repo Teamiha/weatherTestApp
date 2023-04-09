@@ -11,6 +11,7 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     
     //MARK: - Properties
     
+    
     var presenter: CityChosenPresenterProtocol!
     private let cellID = "ID"
     
@@ -22,17 +23,17 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     }()
     
     //MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         searchBar.delegate = self
         navigationItem.titleView = searchBar
-
+        
         
     }
     
-   
+    
     
     // MARK: - Table view data source
     
@@ -44,26 +45,41 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
         var content = cell.defaultContentConfiguration()
-       
+        
         content.text = "Test"
         cell.contentConfiguration = content
         cell.selectionStyle = .none
         
         return cell
     }
-
-}
-
-extension CityChosenViewController: CityChosenViewProtocol {
-    func succes() {
-        return
+    
+    // MARK: - MOK
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.getTemperatureData()
+        print("Test")
+        
+        print(presenter.temperatureData?.main.temp_max)
+        
+        
+        
+        
     }
     
-    func failure(error: Error) {
-        return
-    }
+    
 }
-
+    
+    
+    extension CityChosenViewController: CityChosenViewProtocol {
+        func succes() {
+            
+        }
+        
+        func failure(error: Error) {
+            print(error.localizedDescription)
+        }
+    }
+    
 
 
 

@@ -9,15 +9,16 @@ import UIKit
 
 protocol AssemblyBilderProtocol {
     
-    func createCityChosenModule(temperatureData: TemperatureData?, router: RouterProtocol) -> UIViewController
+    func createCityChosenModule(router: RouterProtocol) -> UIViewController
     func createShowCityTemperatureModule(temperatureData: TemperatureData?, router: RouterProtocol) -> UIViewController
 }
 
 class ModuleBuilder: AssemblyBilderProtocol {
     
-    func createCityChosenModule(temperatureData: TemperatureData?, router: RouterProtocol) -> UIViewController {
+    func createCityChosenModule(router: RouterProtocol) -> UIViewController {
         let view = CityChosenViewController()
-        let presenter = CityChosenPresenter(view: view, router: router)
+        let networkManager = NetworkManager()
+        let presenter = CityChosenPresenter(view: view, networkManager: networkManager, router: router)
         view.presenter = presenter
         return view
     }

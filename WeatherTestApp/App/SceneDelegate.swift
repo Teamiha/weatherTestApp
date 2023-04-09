@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         let assemblyBilder = ModuleBuilder()
         let router = Router(navigationController: navigationController, assemblyBilder: assemblyBilder)
-        router.showCityChosen(temperatureData: mockData)
+        router.showCityChosen()
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
