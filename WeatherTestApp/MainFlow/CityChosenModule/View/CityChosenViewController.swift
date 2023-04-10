@@ -58,14 +58,10 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.getTemperatureData()
         print("Test")
-        
+        CityNameListDecoder().getListCityName(JSONfile: "CityList")
         print(presenter.temperatureData?.main.temp_max)
         
-        
-        
-        
     }
-    
     
 }
     
