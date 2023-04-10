@@ -14,7 +14,7 @@ protocol NetworkManagerProtocol {
 class NetworkManager: NetworkManagerProtocol {
     
     func getTemperatureData(city: String, completion: @escaping (Result<TemperatureData?, Error>) -> Void) {
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(token)&units=metric"
+        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(TokenContainer().token)&units=metric"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in

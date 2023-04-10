@@ -20,6 +20,7 @@
 		4E09853729DDE70100619653 /* CityTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853629DDE70100619653 /* CityTemperatureViewController.swift */; };
 		4E09853A29DDE9BF00619653 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853929DDE9BF00619653 /* TestData.swift */; };
 		4EB1625829E0F84B00508890 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625729E0F84B00508890 /* NetworkManager.swift */; };
+		4EB1625A29E47BC200508890 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625929E47BC200508890 /* TokenStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4E09853629DDE70100619653 /* CityTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTemperatureViewController.swift; sourceTree = "<group>"; };
 		4E09853929DDE9BF00619653 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4EB1625729E0F84B00508890 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		4EB1625929E47BC200508890 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				4EB1625729E0F84B00508890 /* NetworkManager.swift */,
+				4EB1625929E47BC200508890 /* TokenStorage.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				4EB1625829E0F84B00508890 /* NetworkManager.swift in Sources */,
 				4E09850D29DDD93B00619653 /* AppDelegate.swift in Sources */,
 				4E09852B29DDE4A400619653 /* TemperatureDataModel.swift in Sources */,
+				4EB1625A29E47BC200508890 /* TokenStorage.swift in Sources */,
 				4E09852729DDDD3B00619653 /* ModuleBilder.swift in Sources */,
 				4E09852529DDDD2F00619653 /* Router.swift in Sources */,
 				4E09853329DDE6AF00619653 /* CityChosenPresenter.swift in Sources */,
