@@ -14,6 +14,7 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     
     var presenter: CityChosenPresenterProtocol!
     private let cellID = "ID"
+    var cityNames: [String] = []
     
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -29,6 +30,8 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         searchBar.delegate = self
         navigationItem.titleView = searchBar
+//        presenter.getListCityName()
+//        tableView.reloadData()
         
         
     }
@@ -38,15 +41,16 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        return presenter.cityList?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        let city = presenter.cityList?[indexPath.row]
         
         var content = cell.defaultContentConfiguration()
         
-        content.text = "Test"
+        content.text = city?.name
         cell.contentConfiguration = content
         cell.selectionStyle = .none
         
@@ -56,10 +60,14 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - MOK
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.getTemperatureData()
-        print("Test")
-        CityNameListDecoder().getListCityName(JSONfile: "CityList")
-        print(presenter.temperatureData?.main.temp_max)
+        let city = presenter.cityList?[indexPath.row].name
+        
+        presenter.getTemperatureData(city: city ?? "Moscow")
+        
+        
+        print(city)
+        print(presenter.temperatureData?.main.temp)
+        
         
     }
     
@@ -68,6 +76,7 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     
     extension CityChosenViewController: CityChosenViewProtocol {
         func succes() {
+            tableView.reloadData()
             
         }
         

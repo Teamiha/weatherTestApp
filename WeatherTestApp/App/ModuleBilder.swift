@@ -18,7 +18,8 @@ class ModuleBuilder: AssemblyBilderProtocol {
     func createCityChosenModule(router: RouterProtocol) -> UIViewController {
         let view = CityChosenViewController()
         let networkManager = NetworkManager()
-        let presenter = CityChosenPresenter(view: view, networkManager: networkManager, router: router)
+        let cityNameListDecoder = CityNameListDecoder()
+        let presenter = CityChosenPresenter(view: view, networkManager: networkManager, router: router, cityNameListDecoder: cityNameListDecoder)
         view.presenter = presenter
         return view
     }

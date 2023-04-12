@@ -15,9 +15,11 @@ protocol CityChosenViewProtocol: AnyObject {
 }
 
 protocol CityChosenPresenterProtocol: AnyObject {
-    init(view: CityChosenViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol)
+    init(view: CityChosenViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cityNameListDecoder: CityNameListDecoderProtocol)
     var temperatureData: TemperatureData? { get set }
-    func getTemperatureData()
+    var cityList: [CityData]? { get set }
+    func getTemperatureData(city: String)
+    func getListCityName()
     func editGoods(temperatureData: TemperatureData?)
 }
 
@@ -25,19 +27,28 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
     let networkManager: NetworkManagerProtocol!
     weak var view: CityChosenViewProtocol?
     var router: RouterProtocol?
+    var cityNameListDecoder: CityNameListDecoderProtocol?
     var temperatureData: TemperatureData?
+    var cityList: [CityData]?
     
-    required init(view: CityChosenViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol) {
+    required init(view: CityChosenViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cityNameListDecoder: CityNameListDecoderProtocol) {
         self.view = view
         self.router = router
         self.networkManager = networkManager
-        getTemperatureData()
+        self.cityNameListDecoder = cityNameListDecoder
+        getTemperatureData(city: "Moscow")
+        getListCityName()
     }
     
-    func getTemperatureData() {
+    func updateTemperatureData() {
         
-        
-        networkManager.getTemperatureData(city: "Moscow") { [weak self] result in
+    }
+    
+    
+    
+    
+    func getTemperatureData(city: String) {
+        networkManager.getTemperatureData(city: city) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -45,6 +56,26 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
                 switch result {
                 case.success(let temp):
                     self.temperatureData = temp
+                    self.view?.succes()
+//                    return temp
+                    
+                case.failure(let error):
+                    self.view?.failure(error: error)
+                }
+            }
+        }
+        
+    }
+    
+    func getListCityName() {
+        cityNameListDecoder?.getListCityName(JSONfile: "CityList") { [weak self] result in
+            
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case.success(let cityList):
+                    self.cityList = cityList
                     self.view?.succes()
                     
                 case.failure(let error):
