@@ -20,6 +20,7 @@ protocol CityChosenPresenterProtocol: AnyObject {
     var cityList: [CityData]? { get set }
     func getTemperatureData(city: String)
     func getListCityName()
+    func showTemperatureChosenCity(cityName: String?)
     func editGoods(temperatureData: TemperatureData?)
 }
 
@@ -36,16 +37,13 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
         self.router = router
         self.networkManager = networkManager
         self.cityNameListDecoder = cityNameListDecoder
-        getTemperatureData(city: "Moscow")
+//        getTemperatureData(city: "Moscow")
         getListCityName()
     }
     
-    func updateTemperatureData() {
-        
+    func showTemperatureChosenCity(cityName: String?) {
+        router?.showCityTemperature(cityName: cityName)
     }
-    
-    
-    
     
     func getTemperatureData(city: String) {
         networkManager.getTemperatureData(city: city) { [weak self] result in
@@ -57,7 +55,6 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
                 case.success(let temp):
                     self.temperatureData = temp
                     self.view?.succes()
-//                    return temp
                     
                 case.failure(let error):
                     self.view?.failure(error: error)

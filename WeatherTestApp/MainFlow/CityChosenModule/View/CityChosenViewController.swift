@@ -64,9 +64,10 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
         
         presenter.getTemperatureData(city: city ?? "Moscow")
         
+        presenter.showTemperatureChosenCity(cityName: city)
         
         print(city)
-        print(presenter.temperatureData?.main.temp)
+        print(presenter.temperatureData?.main.feels_like)
         
         
     }
@@ -77,7 +78,6 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     extension CityChosenViewController: CityChosenViewProtocol {
         func succes() {
             tableView.reloadData()
-            
         }
         
         func failure(error: Error) {

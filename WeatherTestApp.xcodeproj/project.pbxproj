@@ -21,7 +21,6 @@
 		4E09853A29DDE9BF00619653 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853929DDE9BF00619653 /* TestData.swift */; };
 		4EB1625829E0F84B00508890 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625729E0F84B00508890 /* NetworkManager.swift */; };
 		4EB1625A29E47BC200508890 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625929E47BC200508890 /* TokenStorage.swift */; };
-		4EB1625C29E4867300508890 /* CityList1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1625B29E4867300508890 /* CityList1.json */; };
 		4EB1625E29E486E900508890 /* CityNameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625D29E486E900508890 /* CityNameList.swift */; };
 		4EB1626029E48BCF00508890 /* CityNameListDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */; };
 		4EB1626229E76B3200508890 /* CityList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1626129E76B3200508890 /* CityList.json */; };
@@ -44,7 +43,6 @@
 		4E09853929DDE9BF00619653 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4EB1625729E0F84B00508890 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4EB1625929E47BC200508890 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
-		4EB1625B29E4867300508890 /* CityList1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CityList1.json; sourceTree = "<group>"; };
 		4EB1625D29E486E900508890 /* CityNameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameList.swift; sourceTree = "<group>"; };
 		4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameListDecoder.swift; sourceTree = "<group>"; };
 		4EB1626129E76B3200508890 /* CityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 			children = (
 				4E09853929DDE9BF00619653 /* TestData.swift */,
 				4EB1626129E76B3200508890 /* CityList.json */,
-				4EB1625B29E4867300508890 /* CityList1.json */,
 			);
 			path = Mok;
 			sourceTree = "<group>";
@@ -250,7 +247,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E09851929DDD93C00619653 /* LaunchScreen.storyboard in Resources */,
-				4EB1625C29E4867300508890 /* CityList1.json in Resources */,
 				4EB1626229E76B3200508890 /* CityList.json in Resources */,
 				4E09851629DDD93C00619653 /* Assets.xcassets in Resources */,
 			);

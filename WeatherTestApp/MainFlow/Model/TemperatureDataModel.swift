@@ -9,6 +9,7 @@ import Foundation
 
 struct TemperatureData: Codable {
     let main: Main
+    let name: String
 }
 
 

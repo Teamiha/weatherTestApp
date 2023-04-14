@@ -15,7 +15,7 @@ protocol RouterMain {
 protocol RouterProtocol: RouterMain {
 //    func initialViewController()
     func showCityChosen()
-    func showCityTemperature(temperatureData: TemperatureData?)
+    func showCityTemperature(cityName: String?)
     
     
 }
@@ -38,9 +38,9 @@ class Router: RouterProtocol {
         }
     }
     
-    func showCityTemperature(temperatureData: TemperatureData?) {
+    func showCityTemperature(cityName: String?) {
         if let navigationController = navigationController {
-            guard let showCityTemperatureViewController = assemblyBilder?.createShowCityTemperatureModule(temperatureData: temperatureData, router: self) else {return}
+            guard let showCityTemperatureViewController = assemblyBilder?.createShowCityTemperatureModule(cityName: cityName, router: self) else {return}
             navigationController.pushViewController(showCityTemperatureViewController, animated: true)
         }
     }
