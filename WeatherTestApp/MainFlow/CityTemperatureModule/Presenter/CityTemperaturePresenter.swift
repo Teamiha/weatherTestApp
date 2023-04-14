@@ -35,6 +35,10 @@ class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
     }
     
     func getTemperatureChosenCity(cityName: String?) {
+        // MAIKE ERROR CITY
+        print("!!!!")
+        print(cityName)
+        print("!!!!")
         networkManager.getTemperatureData(city: cityName ?? "Moscow") { [weak self] result in
             
             guard let self = self else { return }
