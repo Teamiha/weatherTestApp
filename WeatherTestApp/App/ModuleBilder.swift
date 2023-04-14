@@ -26,7 +26,9 @@ class ModuleBuilder: AssemblyBilderProtocol {
     
     func createShowCityTemperatureModule(cityName: String?, router: RouterProtocol) -> UIViewController {
         let view = CityTemperatureViewController()
-        let presenter = CityTemperaturePresenter(view: view, router: router)
+        let networkManager = NetworkManager()
+//        var cityName = "Moscow"
+        let presenter = CityTemperaturePresenter(view: view,  networkManager: networkManager, router: router, cityName: cityName )
         view.presenter = presenter
         return view
     }

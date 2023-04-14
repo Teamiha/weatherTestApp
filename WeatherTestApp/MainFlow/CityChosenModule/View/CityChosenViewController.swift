@@ -62,12 +62,13 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let city = presenter.cityList?[indexPath.row].name
         
-        presenter.getTemperatureData(city: city ?? "Moscow")
+       
         
         presenter.showTemperatureChosenCity(cityName: city)
         
         print(city)
-        print(presenter.temperatureData?.main.feels_like)
+        print(presenter.temperatureData)
+//        print(presenter.temperatureData?.main.feels_like)
         
         
     }

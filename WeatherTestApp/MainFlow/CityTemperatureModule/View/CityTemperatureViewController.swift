@@ -33,7 +33,7 @@ class CityTemperatureViewController: UIViewController {
         let label = UILabel()
         var curentTemperature = ""
         label.numberOfLines = 1
-        label.text = "Error Temp"
+        label.text = ""
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 30)
         return label
@@ -46,6 +46,7 @@ class CityTemperatureViewController: UIViewController {
         view.backgroundColor = .white
         setupSubviews(cityName, curentTemperature)
         setConstraints()
+//        setupProp()
         
 
        
@@ -64,6 +65,15 @@ private extension CityTemperatureViewController {
         subviews.forEach { subview in
             view.addSubview(subview)
         }
+    }
+    
+    func setupProp() {
+        cityName.text = presenter.temperatureData?.name
+        if let test = presenter.temperatureData?.main.temp {
+            curentTemperature.text = String(test)
+        }
+        print(presenter.cityName)
+        print(presenter.temperatureData)
     }
     
     //MARK: - Constraints
@@ -94,7 +104,7 @@ private extension CityTemperatureViewController {
 
 extension CityTemperatureViewController: CityTemperatureViewProtocol {
     func succes() {
-        return
+        setupProp()
     }
     
     func failure(error: Error) {
