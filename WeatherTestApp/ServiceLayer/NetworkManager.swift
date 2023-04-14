@@ -34,9 +34,11 @@ class NetworkManager: NetworkManagerProtocol {
             
             do {
                 let obj = try JSONDecoder().decode(TemperatureData.self, from: data!)
+                print("CORE NETWORK DATA \(obj)")
                 completion(.success(obj))
             } catch {
                 completion(.failure(error))
+                print("NETWORK ERROR")
             }
         }.resume()
     }

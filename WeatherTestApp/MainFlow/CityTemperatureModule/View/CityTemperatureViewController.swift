@@ -72,8 +72,10 @@ private extension CityTemperatureViewController {
         if let test = presenter.temperatureData?.main.temp {
             curentTemperature.text = String(test)
         }
+        print("^^^^^^^^^^^^^^^^")
         print(presenter.cityName)
         print(presenter.temperatureData)
+        print("^^^^^^^^^^^^^^^^")
     }
     
     //MARK: - Constraints
@@ -105,6 +107,7 @@ private extension CityTemperatureViewController {
 extension CityTemperatureViewController: CityTemperatureViewProtocol {
     func succes() {
         setupProp()
+        
     }
     
     func failure(error: Error) {
