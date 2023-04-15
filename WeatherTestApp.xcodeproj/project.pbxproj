@@ -24,6 +24,7 @@
 		4EB1625E29E486E900508890 /* CityNameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625D29E486E900508890 /* CityNameList.swift */; };
 		4EB1626029E48BCF00508890 /* CityNameListDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */; };
 		4EB1626229E76B3200508890 /* CityList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1626129E76B3200508890 /* CityList.json */; };
+		4EB1626529EA6A0800508890 /* CashManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1626429EA6A0800508890 /* CashManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		4EB1625D29E486E900508890 /* CityNameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameList.swift; sourceTree = "<group>"; };
 		4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameListDecoder.swift; sourceTree = "<group>"; };
 		4EB1626129E76B3200508890 /* CityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
+		4EB1626429EA6A0800508890 /* CashManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				4EB1625729E0F84B00508890 /* NetworkManager.swift */,
 				4EB1625929E47BC200508890 /* TokenStorage.swift */,
 				4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */,
+				4EB1626429EA6A0800508890 /* CashManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				4EB1625A29E47BC200508890 /* TokenStorage.swift in Sources */,
 				4E09852729DDDD3B00619653 /* ModuleBilder.swift in Sources */,
 				4EB1626029E48BCF00508890 /* CityNameListDecoder.swift in Sources */,
+				4EB1626529EA6A0800508890 /* CashManager.swift in Sources */,
 				4E09852529DDDD2F00619653 /* Router.swift in Sources */,
 				4E09853329DDE6AF00619653 /* CityChosenPresenter.swift in Sources */,
 				4E09850F29DDD93B00619653 /* SceneDelegate.swift in Sources */,

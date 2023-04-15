@@ -39,6 +39,20 @@ class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
         print("!!!!")
         print(cityName)
         print("!!!!")
+//        if let cacheData = TemperatureDataCache.shared.object(forKey: cityName as AnyObject) {
+//
+//            DispatchQueue.main.async {
+//                self.temperatureData = cacheData as? TemperatureData
+//                self.view?.succes()
+//            }
+//
+//                    print("Data from cache: ", cacheData)
+//            self.temperatureData = cacheData as? TemperatureData
+//
+//            print(temperatureData?.main.temp)
+//                    return
+//                }
+        
         networkManager.getTemperatureData(city: cityName ?? "Moscow") { [weak self] result in
             
             guard let self = self else { return }
@@ -46,16 +60,35 @@ class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case.success(let temp):
+                    TemperatureDataCache.shared.setObject(temp as AnyObject, forKey: cityName as AnyObject)
                     self.temperatureData = temp
                     self.view?.succes()
                     
                 case.failure(let error):
-                    self.view?.failure(error: error)
+//                    self.view?.failure(error: error)
+                    print("Network Failure")
+                    self.getCachedData()
+                    self.view?.succes()
                 }
             }
         }
     }
     
+    func getCachedData() {
+        if let cacheData = TemperatureDataCache.shared.object(forKey: cityName as AnyObject) {
+            
+            DispatchQueue.main.async {
+                self.temperatureData = cacheData as? TemperatureData
+                self.view?.succes()
+            }
+            
+                    print("Data from cache: ", cacheData)
+            self.temperatureData = cacheData as? TemperatureData
+            
+            print(temperatureData?.main.temp)
+                    return
+                }
+    }
     
 }
 

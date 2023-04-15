@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-
         let navigationController = UINavigationController()
         let assemblyBilder = ModuleBuilder()
         let router = Router(navigationController: navigationController, assemblyBilder: assemblyBilder)

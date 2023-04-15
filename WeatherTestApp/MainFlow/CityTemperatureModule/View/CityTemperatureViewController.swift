@@ -44,6 +44,7 @@ class CityTemperatureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        
         setupSubviews(cityName, curentTemperature)
         setConstraints()
 //        setupProp()
