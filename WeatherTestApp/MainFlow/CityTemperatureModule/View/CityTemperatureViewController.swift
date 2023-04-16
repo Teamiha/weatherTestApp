@@ -19,11 +19,24 @@ class CityTemperatureViewController: UIViewController {
     
     var presenter: CityTemperaturePresenterProtocol!
     
+//    let alert = UIAlertController(title: "ALERT", message: "Are you sure you want to remove this photo from your favorites?", preferredStyle: .alert)
+    
+    lazy var alert: UIAlertController = {
+        let alert = UIAlertController(
+        title: "Data is old",
+        message: "Test",
+        preferredStyle: .alert
+        )
+        let abortAction = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(abortAction)
+        return alert
+    }()
+    
     lazy var cityName: UILabel = {
         let label = UILabel()
         var cityName = ""
         label.numberOfLines = 1
-        label.text = "Error Name"
+        label.text = "Loading"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 30)
         return label
@@ -69,9 +82,12 @@ private extension CityTemperatureViewController {
     }
     
     func setupProp() {
-        cityName.text = presenter.temperatureData?.name
+        cityName.text = presenter.cityName
         if let test = presenter.temperatureData?.main.temp {
             curentTemperature.text = String(test)
+        }
+        if presenter.isDataLoadError == true {
+            present(alert, animated: true)
         }
         print("^^^^^^^^^^^^^^^^")
         print(presenter.cityName)
@@ -112,6 +128,7 @@ extension CityTemperatureViewController: CityTemperatureViewProtocol {
     }
     
     func failure(error: Error) {
+        print(error)
         return
     }
     

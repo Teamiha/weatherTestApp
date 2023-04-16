@@ -9,15 +9,11 @@ import Foundation
 
 struct TemperatureData: Codable {
     let main: Main
-    let name: String
 }
 
 
 struct Main: Codable {
     let temp: Double
-    let feels_like: Double
-    let temp_min: Double
-    let temp_max: Double
 }
 
 

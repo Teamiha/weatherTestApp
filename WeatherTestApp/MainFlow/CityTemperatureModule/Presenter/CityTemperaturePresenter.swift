@@ -13,24 +13,29 @@ protocol CityTemperatureViewProtocol: AnyObject {
 }
 
 protocol CityTemperaturePresenterProtocol: AnyObject {
-    init(view: CityTemperatureViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cityName: String? )
+    init(view: CityTemperatureViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cacheManager: CacheManagerProtocol, cityName: String?, isDataLoadError: Bool? )
     var temperatureData: TemperatureData? { get set }
     var cityName: String? { get set }
     func getTemperatureChosenCity(cityName: String?)
+    var isDataLoadError: Bool? { get set }
 }
 
 class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
     weak var view: CityTemperatureViewProtocol?
     var router: RouterProtocol?
     let networkManager: NetworkManagerProtocol!
+    let cacheManager: CacheManagerProtocol!
     var temperatureData: TemperatureData?
     var cityName: String?
+    var isDataLoadError: Bool?
     
-    required init(view: CityTemperatureViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cityName: String?) {
+    required init(view: CityTemperatureViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cacheManager: CacheManagerProtocol, cityName: String?, isDataLoadError: Bool?) {
         self.view = view
         self.router = router
         self.networkManager = networkManager
+        self.cacheManager = cacheManager
         self.cityName = cityName
+        self.isDataLoadError = isDataLoadError
         getTemperatureChosenCity(cityName: cityName)
     }
     
@@ -60,35 +65,34 @@ class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
             DispatchQueue.main.async {
                 switch result {
                 case.success(let temp):
-                    TemperatureDataCache.shared.setObject(temp as AnyObject, forKey: cityName as AnyObject)
+                    self.isDataLoadError = false
                     self.temperatureData = temp
                     self.view?.succes()
+                    self.cacheManager.cacheSave(tempData: temp ?? self.cacheManager.errorData, cityName: cityName ?? "Moscow")
+                    print("Start Load Data")
+                    self.cacheManager.cacheLoad(cityName: cityName ?? "Moscow") { [weak self] result in
+                        
+                        DispatchQueue.main.async {
+                            switch result {
+                                
+                            case .success(let tempData):
+                                print("Load From Cache Yaaa!!", tempData)
+                            case .failure(let error):
+                                print("Error For Load Cache")
+                            }
+                        }
+                    }
                     
                 case.failure(let error):
 //                    self.view?.failure(error: error)
                     print("Network Failure")
-                    self.getCachedData()
-                    self.view?.succes()
+//                    self.getCachedData()
+//                    self.view?.succes()
                 }
             }
         }
     }
     
-    func getCachedData() {
-        if let cacheData = TemperatureDataCache.shared.object(forKey: cityName as AnyObject) {
-            
-            DispatchQueue.main.async {
-                self.temperatureData = cacheData as? TemperatureData
-                self.view?.succes()
-            }
-            
-                    print("Data from cache: ", cacheData)
-            self.temperatureData = cacheData as? TemperatureData
-            
-            print(temperatureData?.main.temp)
-                    return
-                }
-    }
     
 }
 

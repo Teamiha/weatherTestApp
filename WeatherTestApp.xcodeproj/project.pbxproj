@@ -18,13 +18,13 @@
 		4E09853329DDE6AF00619653 /* CityChosenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853229DDE6AF00619653 /* CityChosenPresenter.swift */; };
 		4E09853529DDE6D800619653 /* CityChosenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853429DDE6D800619653 /* CityChosenViewController.swift */; };
 		4E09853729DDE70100619653 /* CityTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853629DDE70100619653 /* CityTemperatureViewController.swift */; };
-		4E09853A29DDE9BF00619653 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E09853929DDE9BF00619653 /* TestData.swift */; };
 		4EB1625829E0F84B00508890 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625729E0F84B00508890 /* NetworkManager.swift */; };
 		4EB1625A29E47BC200508890 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625929E47BC200508890 /* TokenStorage.swift */; };
 		4EB1625E29E486E900508890 /* CityNameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625D29E486E900508890 /* CityNameList.swift */; };
 		4EB1626029E48BCF00508890 /* CityNameListDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */; };
 		4EB1626229E76B3200508890 /* CityList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EB1626129E76B3200508890 /* CityList.json */; };
-		4EB1626529EA6A0800508890 /* CashManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1626429EA6A0800508890 /* CashManager.swift */; };
+		4EB1626529EA6A0800508890 /* CaсheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1626429EA6A0800508890 /* CaсheManager.swift */; };
+		4EB1626829EADC9600508890 /* TemperatureDataCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1626629EADC9600508890 /* TemperatureDataCache.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,13 +41,13 @@
 		4E09853229DDE6AF00619653 /* CityChosenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityChosenPresenter.swift; sourceTree = "<group>"; };
 		4E09853429DDE6D800619653 /* CityChosenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityChosenViewController.swift; sourceTree = "<group>"; };
 		4E09853629DDE70100619653 /* CityTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTemperatureViewController.swift; sourceTree = "<group>"; };
-		4E09853929DDE9BF00619653 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		4EB1625729E0F84B00508890 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4EB1625929E47BC200508890 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		4EB1625D29E486E900508890 /* CityNameList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameList.swift; sourceTree = "<group>"; };
 		4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityNameListDecoder.swift; sourceTree = "<group>"; };
 		4EB1626129E76B3200508890 /* CityList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CityList.json; sourceTree = "<group>"; };
-		4EB1626429EA6A0800508890 /* CashManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashManager.swift; sourceTree = "<group>"; };
+		4EB1626429EA6A0800508890 /* CaсheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaсheManager.swift"; sourceTree = "<group>"; };
+		4EB1626729EADC9600508890 /* TemperatureDataCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureDataCache.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +98,7 @@
 				4E09851A29DDD93C00619653 /* Info.plist */,
 				4E09852429DDDD2F00619653 /* Router.swift */,
 				4E09852629DDDD3B00619653 /* ModuleBilder.swift */,
+				4EB1626629EADC9600508890 /* TemperatureDataCache.xcdatamodeld */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -126,7 +127,7 @@
 				4EB1625729E0F84B00508890 /* NetworkManager.swift */,
 				4EB1625929E47BC200508890 /* TokenStorage.swift */,
 				4EB1625F29E48BCF00508890 /* CityNameListDecoder.swift */,
-				4EB1626429EA6A0800508890 /* CashManager.swift */,
+				4EB1626429EA6A0800508890 /* CaсheManager.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -185,7 +186,6 @@
 		4E09853829DDE99500619653 /* Mok */ = {
 			isa = PBXGroup;
 			children = (
-				4E09853929DDE9BF00619653 /* TestData.swift */,
 				4EB1626129E76B3200508890 /* CityList.json */,
 			);
 			path = Mok;
@@ -266,14 +266,14 @@
 				4E09853729DDE70100619653 /* CityTemperatureViewController.swift in Sources */,
 				4E09853129DDE69700619653 /* CityTemperaturePresenter.swift in Sources */,
 				4E09853529DDE6D800619653 /* CityChosenViewController.swift in Sources */,
-				4E09853A29DDE9BF00619653 /* TestData.swift in Sources */,
 				4EB1625829E0F84B00508890 /* NetworkManager.swift in Sources */,
 				4E09850D29DDD93B00619653 /* AppDelegate.swift in Sources */,
 				4E09852B29DDE4A400619653 /* TemperatureDataModel.swift in Sources */,
 				4EB1625A29E47BC200508890 /* TokenStorage.swift in Sources */,
 				4E09852729DDDD3B00619653 /* ModuleBilder.swift in Sources */,
 				4EB1626029E48BCF00508890 /* CityNameListDecoder.swift in Sources */,
-				4EB1626529EA6A0800508890 /* CashManager.swift in Sources */,
+				4EB1626529EA6A0800508890 /* CaсheManager.swift in Sources */,
+				4EB1626829EADC9600508890 /* TemperatureDataCache.xcdatamodeld in Sources */,
 				4E09852529DDDD2F00619653 /* Router.swift in Sources */,
 				4E09853329DDE6AF00619653 /* CityChosenPresenter.swift in Sources */,
 				4E09850F29DDD93B00619653 /* SceneDelegate.swift in Sources */,
@@ -490,6 +490,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4EB1626629EADC9600508890 /* TemperatureDataCache.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4EB1626729EADC9600508890 /* TemperatureDataCache.xcdatamodel */,
+			);
+			currentVersion = 4EB1626729EADC9600508890 /* TemperatureDataCache.xcdatamodel */;
+			path = TemperatureDataCache.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4E09850129DDD93B00619653 /* Project object */;
 }
