@@ -17,8 +17,9 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     var cityNames: [String] = []
     var filtredCityList: [CityData] = []
     var isSearching = false
+
     
-    lazy var searchBar: UISearchBar = {
+   private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search"
         searchBar.returnKeyType = UIReturnKeyType.done
@@ -111,8 +112,3 @@ extension CityChosenViewController: CityChosenViewProtocol {
         print(error.localizedDescription)
     }
 }
-
-
-
-
-

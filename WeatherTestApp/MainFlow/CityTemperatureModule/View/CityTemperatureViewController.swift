@@ -28,7 +28,7 @@ class CityTemperatureViewController: UIViewController {
     
     var presenter: CityTemperaturePresenterProtocol!
     
-    lazy var alert: UIAlertController = {
+    private lazy var alert: UIAlertController = {
         let alert = UIAlertController(
         title: "Outdated data",
         message: "Unable to retrieve new data",
@@ -39,7 +39,7 @@ class CityTemperatureViewController: UIViewController {
         return alert
     }()
     
-    lazy var cityName: UILabel = {
+    private lazy var cityName: UILabel = {
         let label = UILabel()
         var cityName = ""
         label.numberOfLines = 1
@@ -49,7 +49,7 @@ class CityTemperatureViewController: UIViewController {
         return label
     }()
     
-    lazy var curentTemperature: UILabel = {
+    private lazy var curentTemperature: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = ""
@@ -86,7 +86,7 @@ private extension CityTemperatureViewController {
         if let temperature = presenter.temperatureData {
             curentTemperature.text = """
 Current temperature:
-\(temperature) °C
+\(temperature)°
 """
         }
         

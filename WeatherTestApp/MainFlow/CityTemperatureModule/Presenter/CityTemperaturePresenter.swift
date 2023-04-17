@@ -64,7 +64,6 @@ class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
                         switch result {
                             
                         case .success(let currentTemperature):
-                            print("Load From Cache Yaaa!!", currentTemperature)
                             self?.temperatureData = currentTemperature
                             self?.view?.succes()
                         case .failure(let error):
