@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+//MARK: - Protocol
+
 protocol CityTemperatureViewProtocol: AnyObject {
     func succes()
     func failure(error: Error)
@@ -19,6 +22,9 @@ protocol CityTemperaturePresenterProtocol: AnyObject {
     func getTemperatureChosenCity(cityName: String?)
     var isDataLoadError: Bool? { get set }
 }
+
+
+//MARK: - Class
 
 class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
     weak var view: CityTemperatureViewProtocol?
@@ -40,63 +46,35 @@ class CityTemperaturePresenter: CityTemperaturePresenterProtocol {
     }
     
     func getTemperatureChosenCity(cityName: String?) {
-        // MAIKE ERROR CITY
-        print("!!!!")
-        print(cityName)
-        print("!!!!")
-//        if let cacheData = TemperatureDataCache.shared.object(forKey: cityName as AnyObject) {
-//
-//            DispatchQueue.main.async {
-//                self.temperatureData = cacheData as? TemperatureData
-//                self.view?.succes()
-//            }
-//
-//                    print("Data from cache: ", cacheData)
-//            self.temperatureData = cacheData as? TemperatureData
-//
-//            print(temperatureData?.main.temp)
-//                    return
-//                }
-        
-        networkManager.getTemperatureData(city: cityName ?? "Moscow") { [weak self] result in
-            
+        networkManager.getTemperatureData(city: cityName ?? "Error load city name") { [weak self] result in
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 switch result {
-                case.success(let temp):
-                    self.isDataLoadError = false
-                    self.temperatureData = String(temp?.main.temp ?? 0)
-                    self.view?.succes()
-                    self.cacheManager.cacheSave(tempData: temp ?? self.cacheManager.errorData, cityName: cityName ?? "Moscow")
                     
+                case.success(let currentTemperature):
+                    self.isDataLoadError = false
+                    self.temperatureData = String(currentTemperature?.main.temp ?? 0)
+                    self.view?.succes()
+                    self.cacheManager.cacheSave(tempData: currentTemperature ?? self.cacheManager.errorData, cityName: cityName ?? "Error load city name")
                     
                 case.failure(let error):
                     self.isDataLoadError = true
-                    print("Start Load Data")
                     self.cacheManager.cacheLoad(cityName: cityName ?? "Moscow") { [weak self] result in
-                        
-                        
                         switch result {
                             
-                        case .success(let tempData):
-                            print("Load From Cache Yaaa!!", tempData)
-                            self?.temperatureData = tempData
+                        case .success(let currentTemperature):
+                            print("Load From Cache Yaaa!!", currentTemperature)
+                            self?.temperatureData = currentTemperature
                             self?.view?.succes()
-                            print("!!!!!!!!!!!!!!!!")
-                            print(tempData)
                         case .failure(let error):
                             print("Error For Load Cache \(error)")
                         }
                     }
-                    
                     print("Network Failure \(error)")
-                    
                 }
             }
         }
     }
-    
-    
 }
 

@@ -12,27 +12,26 @@ class CityTemperatureViewController: UIViewController {
     //MARK: - Constants
     
     private enum Constants {
-        static let fromCityNameToTop: CGFloat = 10
-        static let CityNameLeadingSpace: CGFloat = 10
-        static let CityNameTrailingSpace: CGFloat = 10
-        static let fromCityNameToBottom: CGFloat = 10
+        static let fromCityNameToTop: CGFloat = -200
+        static let CityNameLeadingSpace: CGFloat = 0
+        static let CityNameTrailingSpace: CGFloat = 0
+        static let fromCityNameToBottom: CGFloat = 0
         
-        static let fromTemperatureNumberTopToCityNameBottom: CGFloat = 10
-        static let TemperatureNumberLeadingSpace: CGFloat = 10
-        static let TemperatureNumberTrailingSpace: CGFloat = 10
-        static let TemperatureNumberToBottom: CGFloat = 10
+        static let fromTemperatureNumberToTop: CGFloat = 0
+        static let TemperatureNumberLeadingSpace: CGFloat = 0
+        static let TemperatureNumberTrailingSpace: CGFloat = 0
+        static let TemperatureNumberToBottom: CGFloat = 0
     }
+    
     
     //MARK: - Views
     
     var presenter: CityTemperaturePresenterProtocol!
     
-//    let alert = UIAlertController(title: "ALERT", message: "Are you sure you want to remove this photo from your favorites?", preferredStyle: .alert)
-    
     lazy var alert: UIAlertController = {
         let alert = UIAlertController(
-        title: "Data is old",
-        message: "Test",
+        title: "Outdated data",
+        message: "Unable to retrieve new data",
         preferredStyle: .alert
         )
         let abortAction = UIAlertAction(title: "Ok", style: .cancel)
@@ -46,7 +45,7 @@ class CityTemperatureViewController: UIViewController {
         label.numberOfLines = 1
         label.text = "Loading"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 30)
+        label.font = .boldSystemFont(ofSize: 30)
         return label
     }()
     
@@ -59,26 +58,20 @@ class CityTemperatureViewController: UIViewController {
         return label
     }()
     
+    
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         setupSubviews(cityName, curentTemperature)
         setConstraints()
-//        setupProp()
-        
-
-       
     }
-    
-
-   
-
 }
 
+
 private extension CityTemperatureViewController {
+    
     
     //MARK: - Methods
     
@@ -88,22 +81,20 @@ private extension CityTemperatureViewController {
         }
     }
     
-    func setupProp() {
+    func setupValues() {
         cityName.text = presenter.cityName
-        if let test = presenter.temperatureData {
+        if let temperature = presenter.temperatureData {
             curentTemperature.text = """
 Current temperature:
-\(test)
+\(temperature) °C
 """
         }
+        
         if presenter.isDataLoadError == true {
             present(alert, animated: true)
         }
-        print("^^^^^^^^^^^^^^^^")
-        print(presenter.cityName)
-        print(presenter.temperatureData)
-        print("^^^^^^^^^^^^^^^^")
     }
+    
     
     //MARK: - Constraints
     
@@ -119,29 +110,25 @@ Current temperature:
         ])
         
         NSLayoutConstraint.activate([
-            curentTemperature.topAnchor.constraint(equalTo: view.topAnchor),
-            curentTemperature.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            curentTemperature.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            curentTemperature.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            curentTemperature.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.fromTemperatureNumberToTop),
+            curentTemperature.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.TemperatureNumberLeadingSpace),
+            curentTemperature.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.TemperatureNumberTrailingSpace),
+            curentTemperature.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.TemperatureNumberToBottom)
         ])
     }
-    
-    
-    
-    
 }
 
+
+//MARK: - Protocol
+
 extension CityTemperatureViewController: CityTemperatureViewProtocol {
+    
     func succes() {
-        setupProp()
-        
+        setupValues()
     }
     
     func failure(error: Error) {
         print(error)
         return
     }
-    
-    
-    
 }

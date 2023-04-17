@@ -13,12 +13,10 @@ protocol RouterMain {
 }
 
 protocol RouterProtocol: RouterMain {
-//    func initialViewController()
     func showCityChosen()
     func showCityTemperature(cityName: String?)
-    
-    
 }
+
 
 class Router: RouterProtocol {
     
@@ -29,7 +27,6 @@ class Router: RouterProtocol {
         self.navigationController = navigationController
         self.assemblyBilder = assemblyBilder
     }
-    
     
     func showCityChosen() {
         if let navigationController = navigationController {
@@ -44,8 +41,6 @@ class Router: RouterProtocol {
             navigationController.pushViewController(showCityTemperatureViewController, animated: true)
         }
     }
-    
-    
 }
 
 

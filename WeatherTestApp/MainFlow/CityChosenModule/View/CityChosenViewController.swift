@@ -7,14 +7,10 @@
 
 import UIKit
 
-class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
-    
-    
-    
+class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     
     
     //MARK: - Properties
-    
     
     var presenter: CityChosenPresenterProtocol!
     private let cellID = "ID"
@@ -27,10 +23,9 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISe
         searchBar.placeholder = "Search"
         searchBar.returnKeyType = UIReturnKeyType.done
         definesPresentationContext = true
-        
-        
         return searchBar
     }()
+    
     
     //MARK: - Lifecycle
     
@@ -38,13 +33,9 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISe
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         searchBar.delegate = self
-        
         navigationItem.titleView = searchBar
-//        presenter.getListCityName()
-//        tableView.reloadData()
-        
-        
     }
+    
     
     // MARK: - SearchBar
     
@@ -63,10 +54,7 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISe
     func updateSearchResults(for searchController: UISearchController) {
         return
     }
-        
-
     
-
     
     // MARK: - Table view data source
     
@@ -76,7 +64,6 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISe
         } else {
             return presenter.cityList?.count ?? 0
         }
-          
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,17 +83,8 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISe
             cell.selectionStyle = .none
         }
         
-        
-//        var content = cell.defaultContentConfiguration()
-//
-//        content.text = city?.name
-//        cell.contentConfiguration = content
-//        cell.selectionStyle = .none
-        
         return cell
     }
-    
-    // MARK: - MOK
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -117,33 +95,23 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate, UISe
             let city = presenter.cityList?[indexPath.row].name
             presenter.showTemperatureChosenCity(cityName: city)
         }
-        
-//        let city =
-        
-       
-//
-//        presenter.showTemperatureChosenCity(cityName: city)
-//
-//        print(city)
-//        print(presenter.temperatureData)
-//        print(presenter.temperatureData?.main.feels_like)
-        
-        
     }
-    
 }
     
+
+// MARK: - Protocol 
+
+extension CityChosenViewController: CityChosenViewProtocol {
     
-    extension CityChosenViewController: CityChosenViewProtocol {
-        func succes() {
-            tableView.reloadData()
-        }
-        
-        func failure(error: Error) {
-            print(error.localizedDescription)
-        }
+    func succes() {
+        tableView.reloadData()
     }
     
+    func failure(error: Error) {
+        print(error.localizedDescription)
+    }
+}
+
 
 
 

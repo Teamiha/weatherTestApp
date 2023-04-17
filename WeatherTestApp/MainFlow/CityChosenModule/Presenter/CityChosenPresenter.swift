@@ -8,6 +8,7 @@
 import Foundation
 
 
+//MARK: - Protocol
 
 protocol CityChosenViewProtocol: AnyObject {
     func succes()
@@ -21,8 +22,10 @@ protocol CityChosenPresenterProtocol: AnyObject {
     func getTemperatureData(city: String)
     func getListCityName()
     func showTemperatureChosenCity(cityName: String?)
-    func editGoods(temperatureData: TemperatureData?)
 }
+
+
+//MARK: - Class
 
 class CityChosenPresenter: CityChosenPresenterProtocol {
     let networkManager: NetworkManagerProtocol!
@@ -37,7 +40,6 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
         self.router = router
         self.networkManager = networkManager
         self.cityNameListDecoder = cityNameListDecoder
-//        getTemperatureData(city: "Moscow")
         getListCityName()
     }
     
@@ -47,11 +49,11 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
     
     func getTemperatureData(city: String) {
         networkManager.getTemperatureData(city: city) { [weak self] result in
-            
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 switch result {
+                    
                 case.success(let temp):
                     self.temperatureData = temp
                     self.view?.succes()
@@ -61,16 +63,15 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
                 }
             }
         }
-        
     }
     
     func getListCityName() {
         cityNameListDecoder?.getListCityName(JSONfile: "CityList") { [weak self] result in
-            
             guard let self = self else { return }
             
             DispatchQueue.main.async {
                 switch result {
+                    
                 case.success(let cityList):
                     self.cityList = cityList
                     self.view?.succes()
@@ -80,13 +81,6 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
                 }
             }
         }
-        
     }
-    
-    func editGoods(temperatureData: TemperatureData?) {
-        
-    }
-    
-    
 }
 

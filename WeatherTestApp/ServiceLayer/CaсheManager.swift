@@ -9,6 +9,8 @@ import UIKit
 import CoreData
 
 
+//MARK: - Protocol
+
 protocol CacheManagerProtocol {
     func cacheSave(tempData: TemperatureData, cityName: String)
     func cacheLoad(cityName: String, completion: (Result<String, Error>) -> Void )
@@ -16,8 +18,14 @@ protocol CacheManagerProtocol {
     
 }
 
+
+//MARK: - Class
+
 class CacheManager: CacheManagerProtocol {
     
+    //MARK: - Core
+    
+    var errorData = TemperatureData(main: Main(temp: 0))
     
     let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "TemperatureDataCache")
@@ -36,45 +44,42 @@ class CacheManager: CacheManagerProtocol {
     }
     
     
-    
+    //MARK: - Method
     
     func cacheSave(tempData: TemperatureData, cityName: String) {
         let fetchRequest = TemperatureDataCache.fetchRequest()
         let loadCache = try? self.viewContext.fetch(fetchRequest)
-        
         let oldData = loadCache!.filter {$0.cityName == cityName}
         
         if oldData != [] {
             let deleteData = oldData[0] as NSManagedObject
             viewContext.delete(deleteData)
             
-            let item = TemperatureDataCache(context: viewContext)
-            item.temperatureData = String(tempData.main.temp)
-            item.cityName = cityName
+            let temperatureDataCache = TemperatureDataCache(context: viewContext)
+            temperatureDataCache.temperatureData = String(tempData.main.temp)
+            temperatureDataCache.cityName = cityName
             
             saveContext()
-        } else {
-            let item = TemperatureDataCache(context: viewContext)
-            item.temperatureData = String(tempData.main.temp)
-            item.cityName = cityName
             
+        } else {
+            let temperatureDataCache = TemperatureDataCache(context: viewContext)
+            temperatureDataCache.temperatureData = String(tempData.main.temp)
+            temperatureDataCache.cityName = cityName
+
             saveContext()
         }
-    
-        
     }
     
     func cacheLoad(cityName: String, completion: (Result<String, Error>) -> Void ) {
         let fetchRequest = TemperatureDataCache.fetchRequest()
         do {
-            var item = try self.viewContext.fetch(fetchRequest)
-            print("ITEM LIST", item)
-            item = item.filter {$0.cityName == cityName}
-            print("ITEM AFTER FILTERED", item)
+            var temperatureDataCache = try self.viewContext.fetch(fetchRequest)
+            temperatureDataCache = temperatureDataCache.filter {$0.cityName == cityName}
             
-            if item != [] {
-                let tempData = item[0].temperatureData ?? "Data Error"
+            if temperatureDataCache != [] {
+                let tempData = temperatureDataCache[0].temperatureData ?? "Data Error"
                 completion(.success(tempData))
+                
             } else {
                 let errorData = "No Cache Data Available"
                 completion(.success(errorData))
@@ -85,7 +90,6 @@ class CacheManager: CacheManagerProtocol {
         }
     }
     
-    var errorData = TemperatureData(main: Main(temp: 0))
     
     // MARK: - Core Data Saving support
     
@@ -99,13 +103,4 @@ class CacheManager: CacheManagerProtocol {
             }
         }
     }
-    
-    
 }
-
-
-
-//final class TemperatureDataCache {
-//    static let shared = NSCache<AnyObject, AnyObject>()
-//    private init() {}
-//}

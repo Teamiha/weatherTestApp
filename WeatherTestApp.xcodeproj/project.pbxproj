@@ -80,7 +80,6 @@
 		4E09850B29DDD93B00619653 /* WeatherTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				4E09853829DDE99500619653 /* Mok */,
 				4E09852829DDE46500619653 /* MainFlow */,
 				4E09852329DDDC4700619653 /* ServiceLayer */,
 				4E09852029DDDB7700619653 /* App */,
@@ -91,6 +90,7 @@
 		4E09852029DDDB7700619653 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				4EB1626129E76B3200508890 /* CityList.json */,
 				4E09850C29DDD93B00619653 /* AppDelegate.swift */,
 				4E09850E29DDD93B00619653 /* SceneDelegate.swift */,
 				4E09851529DDD93C00619653 /* Assets.xcassets */,
@@ -181,14 +181,6 @@
 				4E09853029DDE69700619653 /* CityTemperaturePresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		4E09853829DDE99500619653 /* Mok */ = {
-			isa = PBXGroup;
-			children = (
-				4EB1626129E76B3200508890 /* CityList.json */,
-			);
-			path = Mok;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

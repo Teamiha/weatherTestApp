@@ -11,7 +11,6 @@ struct TemperatureData: Codable {
     let main: Main
 }
 
-
 struct Main: Codable {
     let temp: Double
 }

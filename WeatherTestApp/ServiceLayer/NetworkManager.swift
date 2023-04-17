@@ -7,10 +7,16 @@
 
 import Foundation
 
+
+//MARK: - Protocol
+
 protocol NetworkManagerProtocol {
     func getTemperatureData(city: String, completion: @escaping (Result<TemperatureData?, Error>) -> Void)
     func replaceSpacesWithPercentEncoding(inputString: String) -> String
 }
+
+
+//MARK: - Class
 
 class NetworkManager: NetworkManagerProtocol {
     
@@ -22,23 +28,17 @@ class NetworkManager: NetworkManagerProtocol {
         let correctCity = replaceSpacesWithPercentEncoding(inputString: city)
         let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(correctCity)&appid=\(TokenContainer().token)&units=metric"
         guard let url = URL(string: urlString) else { return }
-        print("***********")
-        print(url)
-        print("***********")
 
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            
             do {
                 let obj = try JSONDecoder().decode(TemperatureData.self, from: data!)
-                print("CORE NETWORK DATA \(obj)")
                 completion(.success(obj))
             } catch {
                 completion(.failure(error))
-                print("NETWORK ERROR")
             }
         }.resume()
     }

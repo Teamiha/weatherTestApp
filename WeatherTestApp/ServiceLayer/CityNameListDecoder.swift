@@ -7,19 +7,24 @@
 
 import Foundation
 
+
+//MARK: - Protocol
+
 protocol CityNameListDecoderProtocol {
     func getListCityName(JSONfile: String, completion: @escaping (Result<[CityData]?, Error>) -> Void)
 }
 
+
+//MARK: - Class
+
 class CityNameListDecoder: CityNameListDecoderProtocol {
+    
     func getListCityName(JSONfile: String, completion: @escaping (Result<[CityData]?, Error>) -> Void) {
         
         if let localData = self.readLocalFile(forName: JSONfile) {
             do {
                 let decodedData = try JSONDecoder().decode([CityData].self,
                                                            from: localData)
-                
-//                print("NameCity: ", decodedData[0].name)
                 completion(.success(decodedData))
             } catch {
                 completion(.failure(error))
@@ -27,18 +32,6 @@ class CityNameListDecoder: CityNameListDecoderProtocol {
             }
         }
     }
-    
-//    func parse(jsonData: Data) {
-//        do {
-//            let decodedData = try JSONDecoder().decode([CityData].self,
-//                                                       from: jsonData)
-//            
-//            print("NameCity: ", decodedData[0].name)
-//            print("===================================")
-//        } catch {
-//            print("decode error")
-//        }
-//    }
     
     func readLocalFile(forName name: String) -> Data? {
         do {
@@ -50,7 +43,6 @@ class CityNameListDecoder: CityNameListDecoderProtocol {
         } catch {
             print(error)
         }
-        
         return nil
     }
 }

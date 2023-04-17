@@ -9,5 +9,4 @@ import Foundation
 
 struct CityData: Codable {
     var name: String
-    
 }
