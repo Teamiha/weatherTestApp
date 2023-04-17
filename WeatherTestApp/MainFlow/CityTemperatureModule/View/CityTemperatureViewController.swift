@@ -12,7 +12,15 @@ class CityTemperatureViewController: UIViewController {
     //MARK: - Constants
     
     private enum Constants {
+        static let fromCityNameToTop: CGFloat = 10
+        static let CityNameLeadingSpace: CGFloat = 10
+        static let CityNameTrailingSpace: CGFloat = 10
+        static let fromCityNameToBottom: CGFloat = 10
         
+        static let fromTemperatureNumberTopToCityNameBottom: CGFloat = 10
+        static let TemperatureNumberLeadingSpace: CGFloat = 10
+        static let TemperatureNumberTrailingSpace: CGFloat = 10
+        static let TemperatureNumberToBottom: CGFloat = 10
     }
     
     //MARK: - Views
@@ -44,8 +52,7 @@ class CityTemperatureViewController: UIViewController {
     
     lazy var curentTemperature: UILabel = {
         let label = UILabel()
-        var curentTemperature = ""
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.text = ""
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 30)
@@ -83,8 +90,11 @@ private extension CityTemperatureViewController {
     
     func setupProp() {
         cityName.text = presenter.cityName
-        if let test = presenter.temperatureData?.main.temp {
-            curentTemperature.text = String(test)
+        if let test = presenter.temperatureData {
+            curentTemperature.text = """
+Current temperature:
+\(test)
+"""
         }
         if presenter.isDataLoadError == true {
             present(alert, animated: true)
@@ -102,14 +112,14 @@ private extension CityTemperatureViewController {
         curentTemperature.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            cityName.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            cityName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            cityName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
-            cityName.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10)
+            cityName.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.fromCityNameToTop),
+            cityName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.CityNameLeadingSpace),
+            cityName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Constants.CityNameTrailingSpace),
+            cityName.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Constants.fromCityNameToBottom)
         ])
         
         NSLayoutConstraint.activate([
-            curentTemperature.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
+            curentTemperature.topAnchor.constraint(equalTo: view.topAnchor),
             curentTemperature.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             curentTemperature.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             curentTemperature.bottomAnchor.constraint(equalTo: view.bottomAnchor)

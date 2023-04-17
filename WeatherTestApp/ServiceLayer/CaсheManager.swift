@@ -72,11 +72,14 @@ class CacheManager: CacheManagerProtocol {
             item = item.filter {$0.cityName == cityName}
             print("ITEM AFTER FILTERED", item)
             
-            
-            let tempData = item[0].temperatureData
-            
-            
-            completion(.success(tempData ?? "Cache Load Error"))
+            if item != [] {
+                let tempData = item[0].temperatureData ?? "Data Error"
+                completion(.success(tempData))
+            } else {
+                let errorData = "No Cache Data Available"
+                completion(.success(errorData))
+            }
+           
         } catch let error {
             completion(.failure(error))
         }
