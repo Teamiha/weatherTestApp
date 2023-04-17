@@ -11,7 +11,9 @@ import Foundation
 //MARK: - Protocol
 
 protocol CityNameListDecoderProtocol {
-    func getListCityName(JSONfile: String, completion: @escaping (Result<[CityData]?, Error>) -> Void)
+    func getListCityName(JSONfile: String,
+                         completion: @escaping (Result<[CityData]?, Error>) -> Void
+                        )
 }
 
 
@@ -19,7 +21,9 @@ protocol CityNameListDecoderProtocol {
 
 class CityNameListDecoder: CityNameListDecoderProtocol {
     
-    func getListCityName(JSONfile: String, completion: @escaping (Result<[CityData]?, Error>) -> Void) {
+    func getListCityName(JSONfile: String,
+                         completion: @escaping (Result<[CityData]?, Error>) -> Void
+                        ) {
         
         if let localData = self.readLocalFile(forName: JSONfile) {
             do {

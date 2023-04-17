@@ -11,7 +11,9 @@ import Foundation
 //MARK: - Protocol
 
 protocol NetworkManagerProtocol {
-    func getTemperatureData(city: String, completion: @escaping (Result<TemperatureData?, Error>) -> Void)
+    func getTemperatureData(city: String,
+                            completion: @escaping (Result<TemperatureData?, Error>) -> Void
+                           )
     func replaceSpacesWithPercentEncoding(inputString: String) -> String
 }
 
@@ -24,7 +26,9 @@ class NetworkManager: NetworkManagerProtocol {
         return inputString.replacingOccurrences(of: " ", with: "%20")
     }
     
-    func getTemperatureData(city: String, completion: @escaping (Result<TemperatureData?, Error>) -> Void) {
+    func getTemperatureData(city: String,
+                            completion: @escaping (Result<TemperatureData?, Error>) -> Void
+                           ) {
         let correctCity = replaceSpacesWithPercentEncoding(inputString: city)
         let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(correctCity)&appid=\(TokenContainer().token)&units=metric"
         guard let url = URL(string: urlString) else { return }

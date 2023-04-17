@@ -41,7 +41,9 @@ class CityChosenViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - SearchBar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filtredCityList = (presenter.cityList?.filter({$0.name.prefix(searchText.count) == searchText}))!
+        filtredCityList = (presenter.cityList?.filter(
+            {$0.name.prefix(searchText.count) == searchText})
+            )!
         isSearching = true
         tableView.reloadData()
     }

@@ -16,7 +16,11 @@ protocol CityChosenViewProtocol: AnyObject {
 }
 
 protocol CityChosenPresenterProtocol: AnyObject {
-    init(view: CityChosenViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cityNameListDecoder: CityNameListDecoderProtocol)
+    init(view: CityChosenViewProtocol,
+         networkManager: NetworkManagerProtocol,
+         router: RouterProtocol,
+         cityNameListDecoder: CityNameListDecoderProtocol
+        )
     var temperatureData: TemperatureData? { get set }
     var cityList: [CityData]? { get set }
     func getTemperatureData(city: String)
@@ -35,7 +39,11 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
     var temperatureData: TemperatureData?
     var cityList: [CityData]?
     
-    required init(view: CityChosenViewProtocol, networkManager: NetworkManagerProtocol, router: RouterProtocol, cityNameListDecoder: CityNameListDecoderProtocol) {
+    required init(view: CityChosenViewProtocol,
+                  networkManager: NetworkManagerProtocol,
+                  router: RouterProtocol,
+                  cityNameListDecoder: CityNameListDecoderProtocol
+                 ) {
         self.view = view
         self.router = router
         self.networkManager = networkManager
@@ -66,7 +74,8 @@ class CityChosenPresenter: CityChosenPresenterProtocol {
     }
     
     func getListCityName() {
-        cityNameListDecoder?.getListCityName(JSONfile: "CityList") { [weak self] result in
+        cityNameListDecoder?.getListCityName(JSONfile: "CityList") {
+            [weak self] result in
             guard let self = self else { return }
             
             DispatchQueue.main.async {

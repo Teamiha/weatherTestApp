@@ -24,6 +24,3 @@ The user selects the city of interest and gets the current temperature.
 - Данные также кешируются, и в случае отсутствия интернета, будут показаны последние сохранённые значения. (CoreData)
 - Список городов создан на основе tableView. (TableView)
 - Так же в приложении есть возможность фильтрации списка городов, через строку поиска. 
-
-
-<img src="weatherTestApp/App/Assets.xcassets/Screenshot1.imageset/Screenshot1.png" width="256"/> <img src="weatherTestApp/App/Assets.xcassets/Screenshot2.imageset/Screenshot2.png" width="256"/> 
